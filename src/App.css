@@ -1,0 +1,6 @@
+/* App specific global overrides or layout if needed. 
+Most styles are in index.css or component files. */
+.app {
+  min-height: 100vh;
+  position: relative;
+}

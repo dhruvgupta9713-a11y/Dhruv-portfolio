@@ -1,0 +1,55 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+import './Skills.css';
+
+const skillsData = [
+    {
+        category: "Frontend",
+        skills: ["HTML5", "CSS3", "JavaScript", "React.js", "Tailwind CSS", "Framer Motion"]
+    },
+    {
+        category: "Backend",
+        skills: ["Node.js", "Express.js", "REST APIs"]
+    },
+    {
+        category: "Database",
+        skills: ["MongoDB", "MySQL"]
+    },
+    {
+        category: "Tools & Others",
+        skills: ["Git", "GitHub", "VS Code", "System Design Basics"]
+    }
+];
+
+const Skills = () => {
+    return (
+        <section className="section skills" id="skills">
+            <div className="container">
+                <h2 className="section-title">Technical Skills</h2>
+                <p className="section-subtitle">My coding toolbox and areas of expertise</p>
+
+                <div className="skills-grid">
+                    {skillsData.map((category, index) => (
+                        <motion.div
+                            key={category.category}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: index * 0.1 }}
+                            className="skills-category-card"
+                        >
+                            <h3 className="category-title">{category.category}</h3>
+                            <div className="skills-list">
+                                {category.skills.map(skill => (
+                                    <span key={skill} className="skill-tag">{skill}</span>
+                                ))}
+                            </div>
+                        </motion.div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+};
+
+export default Skills;
