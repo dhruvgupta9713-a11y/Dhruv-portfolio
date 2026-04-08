@@ -1,75 +1,156 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Github, ExternalLink, Folder } from 'lucide-react';
 import './Projects.css';
 
 const projects = [
-    {
-        title: "E-Commerce Platform",
-        description: "A full-featured online shopping platform with user authentication, product catalog, cart functionality, and payment gateway integration.",
-        tech: ["React", "Node.js", "MongoDB", "Express"],
-        github: "#",
-        demo: "#"
-    },
-    {
-        title: "Task Management App",
-        description: "A collaborative task manager allowing users to create boards, lists, and cards with real-time updates using WebSockets.",
-        tech: ["React", "Socket.io", "Node.js", "PostgreSQL"],
-        github: "#",
-        demo: "#"
-    },
-    {
-        title: "Weather Dashboard",
-        description: "A responsive weather application that provides real-time weather data and forecasts using the OpenWeatherMap API.",
-        tech: ["JavaScript", "HTML/CSS", "API Integration"],
-        github: "#",
-        demo: "#"
-    }
+  {
+    title: 'Travel AI',
+    description:
+      'A full-stack TravelAI platform using the MERN stack to generate personalized travel recommendations based on user preferences. Features optimized MongoDB schemas and real-time data rendering.',
+    tech: ['React.js', 'Node.js', 'Express.js', 'MongoDB'],
+    github: 'https://github.com/dhruvgupta9713-a11y',
+    category: 'fullstack',
+    highlight: 'MERN Stack',
+  },
+  {
+    title: 'SmartAttendAI',
+    description:
+      'A smart attendance system using facial recognition to automatically detect and mark attendance in real-time. Built with OpenCV, Face Recognition library, and a Streamlit + Flask web interface.',
+    tech: ['OpenCV', 'Face Recognition', 'NumPy', 'Pandas', 'Streamlit', 'Flask'],
+    github: 'https://github.com/dhruvgupta9713-a11y',
+    category: 'backend',
+    highlight: 'AI / ML',
+  },
+  {
+    title: 'HealthStack',
+    description:
+      'A scalable full-stack healthcare platform with authentication, appointment scheduling, real-time chat, and video consultations using WebRTC. Optimized PostgreSQL schemas for patient records.',
+    tech: ['React.js', 'Django', 'PostgreSQL', 'REST APIs', 'WebRTC'],
+    github: 'https://github.com/dhruvgupta9713-a11y/HealthStack',
+    category: 'fullstack',
+    highlight: 'Healthcare',
+  },
+];
+
+const filters = [
+  { label: 'All', value: 'all' },
+  { label: 'Full Stack', value: 'fullstack' },
+  { label: 'Backend / AI', value: 'backend' },
 ];
 
 const Projects = () => {
-    return (
-        <section className="section projects" id="projects">
-            <div className="container">
-                <h2 className="section-title">Featured Projects</h2>
-                <p className="section-subtitle">Some things I've built</p>
+  const [activeFilter, setActiveFilter] = useState('all');
 
-                <div className="projects-grid">
-                    {projects.map((project, index) => (
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
-                            className="project-card"
-                        >
-                            <div className="project-header">
-                                <Folder size={40} className="project-icon" />
-                                <div className="project-links">
-                                    <a href={project.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub Repo">
-                                        <Github size={20} />
-                                    </a>
-                                    <a href={project.demo} target="_blank" rel="noopener noreferrer" aria-label="Live Demo">
-                                        <ExternalLink size={20} />
-                                    </a>
-                                </div>
-                            </div>
+  const filteredProjects =
+    activeFilter === 'all'
+      ? projects
+      : projects.filter((p) => p.category === activeFilter);
 
-                            <h3 className="project-title">{project.title}</h3>
-                            <p className="project-description">{project.description}</p>
+  return (
+    <section className="section projects" id="projects">
+      <div className="container">
+        <div className="section-header">
+          <motion.span
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="section-label"
+          >
+            Projects
+          </motion.span>
+          <motion.h2
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="section-title"
+          >
+            Featured Work
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="section-subtitle"
+          >
+            Projects I've built to solve real problems
+          </motion.p>
+        </div>
 
-                            <div className="project-tech-list">
-                                {project.tech.map(tech => (
-                                    <span key={tech} className="project-tech-item">{tech}</span>
-                                ))}
-                            </div>
-                        </motion.div>
-                    ))}
+        {/* Filter tabs */}
+        <motion.div
+          className="project-filters"
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3 }}
+        >
+          {filters.map((filter) => (
+            <button
+              key={filter.value}
+              className={`filter-btn ${activeFilter === filter.value ? 'active' : ''}`}
+              onClick={() => setActiveFilter(filter.value)}
+            >
+              {filter.label}
+            </button>
+          ))}
+        </motion.div>
+
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeFilter}
+            className="projects-grid"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            {filteredProjects.map((project, index) => (
+              <motion.div
+                key={project.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="project-card glass-card"
+                whileHover={{ y: -6 }}
+              >
+                <div className="project-header">
+                  <div className="project-icon-wrap">
+                    <Folder size={28} />
+                  </div>
+                  <div className="project-links">
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${project.title} GitHub`}
+                      className="project-link-icon"
+                    >
+                      <Github size={20} />
+                    </a>
+                  </div>
                 </div>
-            </div>
-        </section>
-    );
+
+                <span className="project-badge">{project.highlight}</span>
+                <h3 className="project-title">{project.title}</h3>
+                <p className="project-description">{project.description}</p>
+
+                <div className="project-tech-list">
+                  {project.tech.map((tech) => (
+                    <span key={tech} className="project-tech-item">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </section>
+  );
 };
 
 export default Projects;

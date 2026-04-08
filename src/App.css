@@ -1,6 +1,37 @@
-/* App specific global overrides or layout if needed. 
-Most styles are in index.css or component files. */
 .app {
   min-height: 100vh;
   position: relative;
+}
+
+/* ===== SCROLL TO TOP ===== */
+.scroll-top-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--gradient-accent);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px var(--accent-glow);
+  z-index: 999;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.scroll-top-btn:hover {
+  box-shadow: 0 6px 30px var(--accent-glow);
+}
+
+@media (max-width: 768px) {
+  .scroll-top-btn {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 40px;
+    height: 40px;
+  }
 }
