@@ -9,7 +9,8 @@ const projects = [
     description:
       'A full-stack TravelAI platform using the MERN stack to generate personalized travel recommendations based on user preferences. Features optimized MongoDB schemas and real-time data rendering.',
     tech: ['React.js', 'Node.js', 'Express.js', 'MongoDB'],
-    github: 'https://github.com/dhruvgupta9713-a11y',
+    github: 'https://github.com/dhruvgupta9713-a11y/travel-ai',
+    demo: 'https://travelaround-ai.onrender.com/',
     category: 'fullstack',
     highlight: 'MERN Stack',
   },
@@ -130,6 +131,17 @@ const Projects = () => {
                     >
                       <Github size={20} />
                     </a>
+                    {project.demo && (
+                      <a
+                        href={project.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${project.title} Live Demo`}
+                        className="project-link-icon"
+                      >
+                        <ExternalLink size={20} />
+                      </a>
+                    )}
                   </div>
                 </div>
 
