@@ -25,7 +25,7 @@ const Contact = () => {
     setStatus(null);
 
     try {
-      const res = await fetch('http://localhost:5000/api/contact', {
+      const res = await fetch('https://formspree.io/f/dhruvgupta9713@gmail.com', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
@@ -38,9 +38,7 @@ const Contact = () => {
         setStatus('error');
       }
     } catch {
-      // If backend is not running, still show success for demo
-      setStatus('success');
-      setFormData({ name: '', email: '', message: '' });
+      setStatus('error');
     } finally {
       setLoading(false);
       setTimeout(() => setStatus(null), 5000);
@@ -197,14 +195,14 @@ const Contact = () => {
               {loading ? 'Sending...' : 'Send Message'} <Send size={18} />
             </button>
 
-            {/* Toast notifications */}
+            {/* Status notifications */}
             {status === 'success' && (
               <motion.div
                 className="toast toast-success"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
               >
-                <CheckCircle size={18} /> Message sent successfully!
+                <CheckCircle size={18} /> Message sent successfully! I'll get back to you soon.
               </motion.div>
             )}
             {status === 'error' && (
@@ -213,7 +211,7 @@ const Contact = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
               >
-                <AlertCircle size={18} /> Something went wrong. Please try again.
+                <AlertCircle size={18} /> Something went wrong. Please email me directly.
               </motion.div>
             )}
           </motion.form>

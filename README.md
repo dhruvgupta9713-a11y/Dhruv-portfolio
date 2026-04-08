@@ -1,11 +1,10 @@
 # 🚀 Dhruv Gupta — Developer Portfolio
 
-A modern, responsive full-stack developer portfolio built with **React.js** and **Node.js**. Features dark/light theming, smooth scroll animations, project filtering, and a contact form backed by Express + MongoDB.
+A modern, responsive full-stack developer portfolio built with **React.js** and **Vite**. Features dark/light theming, smooth scroll animations, project filtering, and a Formspree-powered contact form.
 
 ![Portfolio Preview](https://img.shields.io/badge/Status-Live-brightgreen?style=for-the-badge)
 ![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=white)
-![Node.js](https://img.shields.io/badge/Node.js-Express-339933?style=for-the-badge&logo=node.js&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-Mongoose-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-7-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 
 ---
 
@@ -16,11 +15,11 @@ A modern, responsive full-stack developer portfolio built with **React.js** and 
 - 🎯 **Project Filtering** — Filter projects by category (All / Full Stack / Backend & AI)
 - 📜 **Scroll Animations** — Framer Motion viewport-triggered animations
 - 🧭 **Active Nav Highlighting** — Auto-highlights current section in navbar
-- 💬 **Contact Form API** — Express REST API stores messages in MongoDB
+- 💬 **Contact Form** — Powered by Formspree (no backend needed)
 - 📱 **Fully Responsive** — Mobile-first design with hamburger menu
 - 🎨 **Glassmorphism UI** — Modern backdrop-blur cards with glow effects
 - ⬆️ **Scroll-to-Top** — Floating button appears on scroll
-- 📄 **Resume Download** — One-click PDF download
+- 📄 **Resume Download** — One-click PDF download from `/public/resume.pdf`
 
 ---
 
@@ -34,24 +33,18 @@ A modern, responsive full-stack developer portfolio built with **React.js** and 
 | 4 | **Projects** | Travel AI, SmartAttendAI, HealthStack with filter tabs |
 | 5 | **Experience** | Timeline with Full Stack & Backend internships |
 | 6 | **Achievements** | 650+ DSA, 3★ CodeChef, 1750+ LeetCode, Amazon ML, SIH |
-| 7 | **Contact** | Form with API integration + email, phone, GitHub, LinkedIn |
+| 7 | **Contact** | Formspree form + email, phone, GitHub, LinkedIn |
 
 ---
 
 ## 🛠️ Tech Stack
 
-### Frontend
 - **React.js 19** — Component-based UI
-- **Vite** — Lightning-fast build tool
+- **Vite 7** — Lightning-fast build tool
 - **Framer Motion** — Scroll & interaction animations
 - **Lucide React + React Icons** — Icon libraries
 - **Vanilla CSS** — Custom design system with CSS variables
-
-### Backend
-- **Node.js + Express.js** — REST API server
-- **MongoDB + Mongoose** — Database & ODM
-- **MVC Architecture** — Clean separation of concerns
-- **CORS + dotenv** — Security & configuration
+- **Formspree** — Contact form submission (no backend)
 
 ---
 
@@ -60,7 +53,6 @@ A modern, responsive full-stack developer portfolio built with **React.js** and 
 ### Prerequisites
 - Node.js 18+
 - npm or yarn
-- MongoDB (local or Atlas) — *optional, for contact form*
 
 ### Installation
 
@@ -69,31 +61,27 @@ A modern, responsive full-stack developer portfolio built with **React.js** and 
 git clone https://github.com/dhruvgupta9713-a11y/Dhruv-portfolio.git
 cd Dhruv-portfolio
 
-# Install frontend dependencies
+# Install dependencies
 npm install
 
-# Start frontend dev server
+# Start dev server
 npm run dev
 # → Opens at http://localhost:5173
 ```
 
-### Backend Setup (Optional)
+### Build for Production
 
 ```bash
-# Navigate to server directory
-cd server
-
-# Install backend dependencies
-npm install
-
-# Configure environment variables
-cp .env.example .env
-# Edit .env with your MongoDB URI
-
-# Start backend server
-npm start
-# → Runs at http://localhost:5000
+npm run build
+# Output → dist/
 ```
+
+### Deploy
+
+Ready for one-click deploy on **Vercel** or **Netlify**:
+- Connect your GitHub repo
+- Set build command: `npm run build`
+- Set output directory: `dist`
 
 ---
 
@@ -112,37 +100,17 @@ portifilio/
 │   │   ├── Projects.jsx/css    # Projects with filtering
 │   │   ├── Experience.jsx/css  # Work experience timeline
 │   │   ├── Achievements.jsx/css# Achievements cards
-│   │   ├── Contact.jsx/css     # Contact form + links
+│   │   ├── Contact.jsx/css     # Contact form (Formspree)
 │   │   ├── Footer.jsx/css      # Footer with socials
 │   │   └── ThemeToggle.jsx/css # Dark/light toggle
 │   ├── App.jsx                 # Main app shell
 │   ├── App.css                 # App-level styles
 │   ├── index.css               # Design system & theme
 │   └── main.jsx                # Entry point
-├── server/
-│   ├── controllers/
-│   │   └── contactController.js # Contact form logic
-│   ├── models/
-│   │   └── Contact.js          # Mongoose schema
-│   ├── routes/
-│   │   └── contact.js          # API routes
-│   ├── index.js                # Express server
-│   ├── .env.example            # Environment template
-│   └── package.json            # Backend dependencies
 ├── index.html                  # HTML entry with SEO meta
 ├── vite.config.js              # Vite configuration
-└── package.json                # Frontend dependencies
+└── package.json                # Dependencies
 ```
-
----
-
-## 🌐 API Endpoints
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `POST` | `/api/contact` | Submit a contact message |
-| `GET` | `/api/contact` | Retrieve all messages (admin) |
-| `GET` | `/api/health` | Health check |
 
 ---
 
